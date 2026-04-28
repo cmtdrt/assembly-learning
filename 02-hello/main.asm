@@ -1,3 +1,5 @@
+; This program prints "Hello, World!" in the terminal.
+
 ; expose the _start symbol to the linker so it knows where to start execution
 global _start
 

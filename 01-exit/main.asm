@@ -1,3 +1,5 @@
+; This program gracefully exits the program with a given exit code.
+
 ; expose the _start symbol to the linker so it knows where to start execution
 global _start
 
