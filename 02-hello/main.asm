@@ -4,7 +4,7 @@ global _start
 ; indicate the start of the data section
 ; in this section, all data is stored contiguously in memory
 section .data
-    message db "Hello, World!", 10 ; 10 is the newline character (it's optional)
+    message db "Hello, World!", 10 ; defines a sequence of bytes in memory containing the string ‘Hello, World!’ followed by a newline character (which is optional)
     message_end: ; label pointing to the adress after the end of the message (the next byte after the last byte of the message)
 
 ; indicate the start of executable code
