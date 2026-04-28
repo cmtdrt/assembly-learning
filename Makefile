@@ -12,3 +12,8 @@ link-hello:
 
 exec-hello:
 	./hello
+
+run-hello:
+	nasm -f elf64 01-hello/main.asm -o hello.o
+	ld hello.o -o hello
+	./hello
