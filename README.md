@@ -32,12 +32,24 @@ Takes a `.asm` file and compiles it into machine code, producing an object file 
 nasm -f elf64 02-hello/main.asm -o hello.o
 ```
 
+Or using Make:
+
+```bash
+make compile SRC=02-hello/main.asm OUT=hello.o
+```
+
 ### 5) Link (`.o` → executable)
 
 Turns the `.o` file into an executable program.
 
 ```bash
 ld hello.o -o hello
+```
+
+Or using Make:
+
+```bash
+make link SRC=hello.o OUT=hello
 ```
 
 ### 6) Run the program
