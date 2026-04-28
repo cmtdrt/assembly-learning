@@ -2,8 +2,10 @@
 global _start
 
 ; indicate the start of the data section
+; in this section, all data is stored contiguously in memory
 section .data
     message db "Hello, World!", 10 ; 10 is the newline character (it's optional)
+    message_end: ; label pointing to the adress after the end of the message (the next byte after the last byte of the message)
 
 ; indicate the start of executable code
 section .text
@@ -13,7 +15,7 @@ _start:
     mov rax, 1 ; 1 is the write system call
     mov rdi, 1 ; indicate where to write (1 = stdout, 2 = stderr)
     mov rsi, message ; pointer to the first byte of the message
-    mov rdx, 14 ; length of the message -> 13 + 1 for the newline character (10)
+    mov rdx, message_end - message ; length of the message -> difference between the address right after the end of the message and the address of the start of the message = a number of bytes
     syscall
     
     ; exit the program (check 01-exit/main.asm for more details)
