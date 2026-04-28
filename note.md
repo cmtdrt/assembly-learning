@@ -27,7 +27,7 @@ uname -m
 Prend un fichier `.asm` et le compile en code machine en produisant un fichier objet `.o`.
 
 ```bash
-nasm -f elf64 01-hello/main.asm -o hello.o
+nasm -f elf64 02-hello/main.asm -o hello.o
 ```
 
 ### 5) Linker (`.o` → exécutable)
