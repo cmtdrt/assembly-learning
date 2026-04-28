@@ -12,7 +12,7 @@ section .text
 
 _start:
     ; print "Hello, World!"
-    mov rax, 1 ; 1 is the write system call
+    mov rax, 1 ; 1 is the write system call (see: https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/)
     mov rdi, 1 ; indicate where to write (1 = stdout, 2 = stderr)
     mov rsi, message ; pointer to the first byte of the message
     mov rdx, message_end - message ; length of the message -> difference between the address right after the end of the message and the address of the start of the message = a number of bytes
