@@ -10,3 +10,4 @@ _start:
     syscall
     ; to check if the program exited with the right exit code
     ;we can use 'echo $?' and it should show 69
+    ; for syscalls, check: https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/
