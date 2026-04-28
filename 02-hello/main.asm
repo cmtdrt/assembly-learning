@@ -18,7 +18,7 @@ _start:
     mov rdx, message_end - message ; length of the message -> difference between the address right after the end of the message and the address of the start of the message = a number of bytes
     syscall
     
-    ; exit the program (check 01-exit/main.asm for more details)
+    ; exit the program (see 01-exit/main.asm for more details)
     mov rax, 60
     mov rdi, 69
     syscall
