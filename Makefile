@@ -4,16 +4,8 @@ dbuild:
 dstart:
 	docker run --platform linux/amd64 -it --rm -v "$(CURDIR)":/workspace asm-env
 
-compile-hello:
-	nasm -f elf64 01-hello/main.asm -o hello.o
+compile:
+	nasm -f elf64 $(SRC) -o $(OUT)
 
-link-hello:
-	ld hello.o -o hello
-
-exec-hello:
-	./hello
-
-run-hello:
-	nasm -f elf64 01-hello/main.asm -o hello.o
-	ld hello.o -o hello
-	./hello
+link:
+	ld $(SRC) -o $(OUT)
