@@ -22,7 +22,7 @@ _start:
     
     ; exit the program (see 01-exit/main.asm for more details)
     mov rax, 60
-    mov rdi, 69
+    mov rdi, 0
     syscall
 
     ; Notes:
