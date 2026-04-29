@@ -8,7 +8,7 @@ section .text
 
 _start:
     mov rax, 60 ; 60 is the exit system call
-    mov rdi, 69 ;69 is the exit code, we can choose any number
+    mov rdi, 69 ;69 is the exit code, we can choose any number (0 = success)
     syscall
     ; to check if the program exited with the right exit code
     ; we can use 'echo $?' and it should show 69
