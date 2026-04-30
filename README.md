@@ -1,6 +1,8 @@
 ## Assembly learning
 
-This repo contains notes and examples to setup and start learning assembly language.
+This repo contains notes and examples to setup and start learning assembly language. 
+
+## Steps to setup everything locally
 
 ### 1) Build the Docker image
 
