@@ -40,6 +40,7 @@ _start:
     movzx rax, al   ; convert 8 bits to 64 bits
     mov rbx, rax ; store the age in rbx, we could have used rax directly but it's good practice to use rbx to store values since rax is often used for system calls.
     
+    ; compare the value of rbx with 5, depending on the result we will jump to the corresponding label.
     cmp rbx, 5
     je equal_5 ; if the age is equal to 5, jump to the equal_5 label
     jl below_5 ; if the age is less than 18, jump to the minor label
