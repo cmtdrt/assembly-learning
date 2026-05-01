@@ -65,6 +65,7 @@ _start:
         mov rsi, below_5_message
         mov rdx, below_5_message_length
         syscall
+        ; notice that we don't need to jump to the exit label here because it's the next intruction anyway.
 
     ; exit the program (see 01-exit/main.asm for more details)
     exit:
