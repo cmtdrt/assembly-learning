@@ -49,7 +49,7 @@ _start:
         mov rsi, above_5_message
         mov rdx, above_5_message_length
         syscall
-        jmp exit
+        jmp exit ; we jump straight to the exit label to avoid executing the next instructions.
 
     equal_5:
         mov rax, 1
@@ -57,7 +57,7 @@ _start:
         mov rsi, equal_5_message
         mov rdx, equal_5_message_length
         syscall
-        jmp exit
+        jmp exit ; we jump straight to the exit label to avoid executing the next instructions.
 
     below_5:
         mov rax, 1
