@@ -8,7 +8,7 @@ Note that this is my own journey to learn assembly language. 100% of the code yo
 
 **Q&A:** 
 
-- **Q**: Why are you learning assembly in 2026 ? Touch some grass buddy
+- **Q**: Why are you learning assembly in 2026 ?
 - **A**: I just never got the chance to learn low level programming languages like C or C++ in my first years of programming and I felt like I was missing out a lot on how things work under the hood. So I figured—why not go all the way down to assembly and fill that gap?
 
 ---
