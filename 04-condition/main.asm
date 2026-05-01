@@ -37,11 +37,12 @@ _start:
     mov al, [userResponse]  ; if user type 1, then al will be 49 (ASCII code of '1') --> response's first byte value thanks to [] which allow us to access the value of the memory address
     sub al, '0' ; since '0' in ASCII is 48, we need to subtract 48 to get the actual number --> we now have al = 1
     
-    ; compare the value of rbx with 5, depending on the result we will jump to the corresponding label.
+    ; compare the value of al with 5, depending on the result we will jump to the corresponding label.
     cmp al, 5
     je equal_5 ; if the age is equal to 5, jump to the equal_5 label
     jl below_5 ; if the age is less than 18, jump to the minor label
     
+    ; if all conditions (je and jl) are false, we juste continue to the next instruction so we go to the above_5 label in this case.
     above_5:
         mov rax, 1
         mov rdi, 1
