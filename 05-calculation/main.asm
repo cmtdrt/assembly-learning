@@ -4,7 +4,7 @@
 global _start
 
 section .data
-    add_result db 0 , 10; set to 0 but it's not important because we will overwrite it later
+    add_result db ? , 10 ; since we will overwrite the value later, we can use '?'
     add_result_length: equ $ - add_result
 
 section .text
