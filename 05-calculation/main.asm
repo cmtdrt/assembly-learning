@@ -1,4 +1,6 @@
-; This program adds two numbers and prints the result. Note that it only works for results between 0 and 9. (printing multiple digits needs more steps.)
+; This program adds two numbers and prints the result. Note that it only works for results between 0 and 9. 
+; (printing multiple digits needs more steps, we'll see that later)
+
 global _start
 
 section .data
