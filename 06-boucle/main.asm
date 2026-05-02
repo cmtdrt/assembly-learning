@@ -3,14 +3,14 @@ global _start
 section .text
 
 _start:
-    mov rbx, 8
-    add rbx, 4
-
-    mov rax, 1
-    mov rdi, 1
-    mov rsi, rbx
-    mov rdx, 1
-    syscall
+    ; TODO : use a loop to print a pyramid of *'s
+    ; example : 
+    ; if we want to print a pyramid of 4 *'s, we will print :
+    ; *
+    ; **
+    ; ***
+    ; ****
+    ; so we need to print 4 lines of *'s, each line having 1 more * than the previous line.
         
     exit:
         mov rax, 60
