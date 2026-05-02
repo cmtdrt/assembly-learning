@@ -3,26 +3,37 @@
 
 global _start
 
+; since we will overwrite the value later without setting a default value, we declare add_result in bss section
+section .bss
+    add_result resb 1 ; Sadly because it's bss and we can't set a default value, we can't use '10' for a newline character
+                      ; we'll create a 'newline' label in data section to solve this problem.
+
 section .data
-    add_result db ? , 10 ; since we will overwrite the value later, we can use '?'
-    add_result_length: equ $ - add_result
+    newline db 10 ; in ASCII, 10 is the newline character
 
 section .text
-
 _start:
     ; add the numbers and store the result in add_result
     add_numbers:
         mov rbx, 5 ; rbx = 5
         add rbx, 4 ; rbx = rbx + 4 = 9
         add rbx, '0' ; convert the number to ASCII (terminal only displays ASCII characters)
-        mov [add_result], bl ; we use bl because it's the lower 8 bits of rbx (if we use rbx, it would be the whole 64 bits)
+        mov [add_result], bl ; we use bl because it's the lower 8 bits of rbx (1 byte long, perfect for add_result)
 
     ; print the result in the terminal (see 02-hello/main.asm for more details)
     print_result:
         mov rax, 1
         mov rdi, 1
         mov rsi, add_result
-        mov rdx, add_result_length
+        mov rdx, 1 ; add_result is always 1 byte long so we can hardcode it's length
+        syscall
+    
+    ; simply print a newline character so it's easier to read the result.
+    print_newline:
+        mov rax, 1
+        mov rdi, 1
+        mov rsi, newline
+        mov rdx, 1 ; newline is always 1 byte long so we can hardcode it's length
         syscall
 
     ; exit the program (see 01-exit/main.asm for more details)
