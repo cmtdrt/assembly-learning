@@ -1,27 +1,24 @@
 global _start
 
 section .data
-    star db 1 "*", 10
+    star db "*", 10
+    star_length: equ $ - star
 
 section .text
 
 _start:
-    ; TODO : use a loop to print a pyramid of *'s
-    ; example : 
-    ; if we want to print a pyramid of 4 *'s, we will print :
-    ; *
-    ; **
-    ; ***
-    ; ****
-    ; so we need to print 4 lines of *'s, each line having 1 more * than the previous line.
-    
-    ; init a loop
+    mov rbx, 1
     loop_start:
+        mov rdi, 1
+        mov rax, 1
+        mov rsi, star
+        mov rdx, star_length
+        syscall
 
-        ; use case should be here
+        inc rbx ; increment rbx by 1
 
-        cmp ... ; comparison with smth
-        jx loop_start ; depending on the comparison, we should re do the action
+        cmp rbx, 5
+        jle loop_start
         
     exit:
         mov rax, 60
