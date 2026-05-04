@@ -10,7 +10,7 @@ section .text
 _start:
     mov rbx, 1
     loop_line:
-        mov r12, 0
+        mov r12, 0 ; see below for more details about why we use r12 and not another register
         loop_star:
             cmp r12, rbx
             jge print_newline
@@ -41,3 +41,22 @@ _start:
     mov rax, 60
     xor rdi, rdi ; apparently it's the same as mov rdi, 0 but it's more efficient to set a register to 0 like this
     syscall
+
+; Note: I tried to use rcx instead of r12 (because I was used to use rbx and rcx to store data) but it didn't work, 
+; Instead of this :
+; *
+; **
+; ***
+; ****
+; *****
+;
+; I got this:
+; *
+; *
+; *
+; *
+; *
+;
+; The reason why is that the syscall instruction destroys the contents of the rcx register
+; The kernel uses it to store the memory address of the next instruction to execute after a syscall (so it knows where to go right after the syscall).
+; That's why we have to use a callee-saved register (RBX, RBP, R12-R15) to be sure that the value stays how it should be even after a syscall.
