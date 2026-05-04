@@ -57,6 +57,6 @@ _start:
 ; *
 ; *
 ;
-; The reason why is that the syscall instruction destroys the contents of the rcx register
+; The reason why is that the syscall instruction destroys the content of certain registers, including rcx.
 ; The kernel uses it to store the memory address of the next instruction to execute after a syscall (so it knows where to go right after the syscall).
 ; That's why we have to use a callee-saved register (RBX, RBP, R12-R15) to be sure that the value stays how it should be even after a syscall.
