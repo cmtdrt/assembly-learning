@@ -42,7 +42,7 @@ _start:
     xor rdi, rdi ; apparently it's the same as mov rdi, 0 but it's more efficient to set a register to 0 like this
     syscall
 
-; Note: I tried to use rcx instead of r12 (because I was used to use rbx and rcx to store data) but it didn't work, 
+; Note: I tried to use rcx instead of r12 (because I'm used to using rbx and rcx to store data) but it didn't work, 
 ; Instead of this :
 ; *
 ; **
