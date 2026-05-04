@@ -1,5 +1,8 @@
 global _start
 
+section .data
+    star db 1 "*", 10
+
 section .text
 
 _start:
@@ -11,6 +14,14 @@ _start:
     ; ***
     ; ****
     ; so we need to print 4 lines of *'s, each line having 1 more * than the previous line.
+    
+    ; init a loop
+    loop_start:
+
+        ; use case should be here
+
+        cmp ... ; comparison with smth
+        jx loop_start ; depending on the comparison, we should re do the action
         
     exit:
         mov rax, 60
