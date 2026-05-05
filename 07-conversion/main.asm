@@ -35,10 +35,10 @@ _start:
     mov rdi, 0
     mov rsi, userResponse ; pointer to the buffer which will store the user response
     syscall
-    mov rbx, rax ; userResponse length
+    mov r13, rax ; userResponse length
 
     ; If the input is 1 caracter long, it's only an enter so we print the message and exit
-    cmp rbx, 1 
+    cmp r13, 1 
     je print_only_enter
 
     ; Check if the input is a number
@@ -82,10 +82,37 @@ _start:
         mov rdx, valid_input_message_length
         syscall
 
+        ; userResponse still contains the input as a string (ASCII characters), so we need to convert it to an integer
+        ; TODO
+        ; for each character:
+        ; digit = character - '0'
+        ; result = result * 10 + digit
+
+
+        ; Multiply the input by 2
+        mov rax, [userResponse]
+        mov rbx, 2
+        mul rbx
+        ; now rax = rax * rbx = userResponse * 2
+
+        ; Convert the result back to a string
+        ; TODO
+        ; for each character:
+
+        add rax, '0'
+        mov [userResponse], rax
+
+        ; Print the result
+        mov rax, 1
+        mov rdi, 1
+        mov rsi, userResponse
+        mov rdx, r13
+        syscall
+
     exit:
-    mov rax, 60
-    xor rdi, rdi
-    syscall
+        mov rax, 60
+        xor rdi, rdi
+        syscall
 
     ; Note: byte is used here because we need to specify that we are comparing a single byte (character) instead of a word (2 bytes), a double word (4 bytes) or a quad word (8 bytes).
 
