@@ -2,8 +2,6 @@
 
 This repo contains notes and examples to setup and start learning assembly language. 
 
-Note that this is my own journey to learn assembly language. 100% of the code you see here is written by my own hands for the purpose of learning. It might not be the best code you'll ever see in your life.
-
 ---
 
 **Q&A:** 
@@ -21,10 +19,22 @@ Note that this is my own journey to learn assembly language. 100% of the code yo
 docker build --platform linux/amd64 -t asm-env .
 ```
 
+Or using make:
+
+```bash
+make dbuild
+```
+
 ### 2) Run the container
 
 ```bash
 docker run --platform linux/amd64 -it --rm -v $(pwd):/workspace asm-env
+```
+
+Or using make:
+
+```bash
+make dstart
 ```
 
 - **Important**: `--rm` **removes the container** after it exits.
@@ -37,7 +47,7 @@ uname -m
 
 - **Expected**: `x86_64`.
 
-### 4) Assemble (`.asm` → `.o`)
+### 4) Compile (`.asm` → `.o`)
 
 Takes a `.asm` file and compiles it into machine code, producing an object file `.o`.
 
