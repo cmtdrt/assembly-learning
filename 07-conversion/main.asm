@@ -44,21 +44,20 @@ _start:
     ; Check if the input is a number
     mov r12, 0 ; index of the current character
     for_each_char:
-    
-    ; if char is \n (Enter key, so basically the last character), it's a valid input
-    cmp byte [userResponse + r12], 10 ; Check below for more details about why we use byte here.
-    je valid_input
+        ; if char is \n (Enter key, so basically the last character), it's a valid input
+        cmp byte [userResponse + r12], 10 ; Check below for more details about why we use byte here.
+        je valid_input
 
-    ; if char is below '0' (ASCII code 48), it's not a number
-    cmp byte [userResponse + r12], '0'
-    jl not_a_number
-    
-    ; if char is above '9' (ASCII code 57), it's not a number
-    cmp byte [userResponse + r12], '9'
-    jg not_a_number
+        ; if char is below '0' (ASCII code 48), it's not a number
+        cmp byte [userResponse + r12], '0'
+        jl not_a_number
+        
+        ; if char is above '9' (ASCII code 57), it's not a number
+        cmp byte [userResponse + r12], '9'
+        jg not_a_number
 
-    inc r12 ; increment the index
-    jmp for_each_char ; loop again
+        inc r12 ; increment the index
+        jmp for_each_char ; loop again
 
     print_only_enter:
         mov rax, 1
