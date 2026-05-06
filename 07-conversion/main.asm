@@ -83,24 +83,37 @@ _start:
         syscall
 
         ; userResponse still contains the input as a string (ASCII characters), so we need to convert it to an integer
-        ; TODO
-        ; for each character:
-        ; digit = character - '0'
-        ; result = result * 10 + digit
+        mov rax, 0 ; reset rax to 0 (it was set to 1 by the syscall)
+        mov r12, 0 ; index of the current character
+        convert_to_integer:
+            cmp r12, r13 ; compare the index of the current character with the length of the input
+            jge end_convert_to_integer ; if we have reached the end of the input (Enter character), we can stop the loop to ignore it.
+
+            movzx rbx, byte [userResponse + r12]
+            sub rbx, '0'
+            imul rax, rax,10
+            add rax, rbx
+            inc r12
+            jmp convert_to_integer ; loop again
 
 
+
+    end_convert_to_integer:
         ; Multiply the input by 2
-        mov rax, [userResponse]
-        mov rbx, 2
-        mul rbx
-        ; now rax = rax * rbx = userResponse * 2
+        ; rax already contains the result of the conversion, so we can use it directly
+        imul rax, rax, 2 ; rax = rax * 2
 
         ; Convert the result back to a string
-        ; TODO
-        ; for each character:
+        ; TODO : we need to convert to a String for every character in rax
+        ; tant que rax > 0 :
+            ; rdx = rax % 10     ; via div
+            ; rax = rax / 10     ; via div (automatique)
+            ; caractère = rdx + '0'
+            ; empiler le caractère sur la stack
+        ; ensuite dépiler les caractères dans userResponse dans l'ordre
 
-        add rax, '0'
-        mov [userResponse], rax
+        add rax, '0' ; not finished
+        mov [userResponse], rax ; not finished
 
         ; Print the result
         mov rax, 1
