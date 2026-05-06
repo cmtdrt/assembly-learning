@@ -99,11 +99,10 @@ _start:
 
 
     end_convert_to_integer:
-        ; Multiply the input by 2
-        ; rax already contains the result of the conversion, so we can use it directly
+        ; Multiply by 2 (just to prove that the conversion worked and we are working with an integer)
         imul rax, rax, 2 ; rax = rax * 2
 
-        ; Convert the result back to a string
+        ; Convert the result back to a string so we can print it
         ; TODO : we need to convert to a String for every character in rax
         ; tant que rax > 0 :
             ; rdx = rax % 10     ; via div
@@ -112,13 +111,10 @@ _start:
             ; empiler le caractère sur la stack
         ; ensuite dépiler les caractères dans userResponse dans l'ordre
 
-        add rax, '0' ; not finished
-        mov [userResponse], rax ; not finished
-
         ; Print the result
         mov rax, 1
         mov rdi, 1
-        mov rsi, userResponse
+        mov rsi, result_as_string ; FIXME 
         mov rdx, r13
         syscall
 
