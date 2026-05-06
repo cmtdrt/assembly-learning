@@ -98,7 +98,9 @@ _start:
 
     end_convert_to_integer:
         ; Multiply by 2 (just to prove that the conversion worked and we are working with a number)
-        imul rax, rax, 2 ; rax = rax * 2
+        shl rax, 1 ; We could have used 'imul rax, rax, 2' instead, but this is an interesting way to do it.
+                    ; It shifts the bits to the left by 1 position so it multiplies by 2. It's faster than imul btw.
+                    ; Note that it works here only because we are working with positive and integer numbers.
 
         ; Convert the result back to a string so we can print it
         ; TODO : we need to convert to a String for every character in rax
