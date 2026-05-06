@@ -43,7 +43,7 @@ _start:
 
     ; Check if the input is a number
     mov r12, 0 ; index of the current character
-    for_each_char:
+    is_character_a_number:
         ; if char is \n (Enter key, so basically the last character), it's a valid input
         cmp byte [userResponse + r12], 10 ; Check below for more details about why we use byte here.
         je valid_input
@@ -57,7 +57,7 @@ _start:
         jg not_a_number
 
         inc r12 ; increment the index
-        jmp for_each_char ; loop again
+        jmp is_character_a_number ; loop again
 
     print_only_enter:
         mov rax, 1
@@ -91,7 +91,7 @@ _start:
 
         movzx rbx, byte [userResponse + r12] ; load the current character into rbx (and zero-extend it to 64 bits)
         sub rbx, '0' ; subtract the ASCII value of '0' to get the actual number (example: '32' - '0' = 32)
-        imul rax, rax,10 ; multiply the result by 10 to shift the digits to the left
+        imul rax, rax, 10 ; multiply the result by 10 to shift the digits to the left
         add rax, rbx ; add the actual number to the result
         inc r12
         jmp convert_to_integer ; loop again
