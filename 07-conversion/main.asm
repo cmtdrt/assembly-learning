@@ -124,10 +124,3 @@ _start:
         syscall
 
     ; Note: byte is used here because we need to specify that we are comparing a single byte (character) instead of a word (2 bytes), a double word (4 bytes) or a quad word (8 bytes).
-
- ; TODO: 
-    ; 1) Read input from the user
-    ; 2) Convert the input to an integer
-    ; 3) Check if the integer is a valid number (= handle errors)
-    ; 4) Do a little calculation with the integer (x * 2 for example)
-    ; 5) Print "The result is : <result>"
