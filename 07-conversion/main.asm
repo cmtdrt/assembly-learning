@@ -89,27 +89,27 @@ _start:
             cmp r12, r13 ; compare the index of the current character with the length of the input
             jge end_convert_to_integer ; if we have reached the end of the input (Enter character), we can stop the loop to ignore it.
 
-            movzx rbx, byte [userResponse + r12]
-            sub rbx, '0'
-            imul rax, rax,10
-            add rax, rbx
+            movzx rbx, byte [userResponse + r12] ; load the current character into rbx (and zero-extend it to 64 bits)
+            sub rbx, '0' ; subtract the ASCII value of '0' to get the actual number (example: '32' - '0' = 32)
+            imul rax, rax,10 ; multiply the result by 10 to shift the digits to the left
+            add rax, rbx ; add the actual number to the result
             inc r12
             jmp convert_to_integer ; loop again
 
 
 
     end_convert_to_integer:
-        ; Multiply by 2 (just to prove that the conversion worked and we are working with an integer)
+        ; Multiply by 2 (just to prove that the conversion worked and we are working with a number)
         imul rax, rax, 2 ; rax = rax * 2
 
         ; Convert the result back to a string so we can print it
         ; TODO : we need to convert to a String for every character in rax
-        ; tant que rax > 0 :
+        ; while rax > 0 :
             ; rdx = rax % 10     ; via div
-            ; rax = rax / 10     ; via div (automatique)
-            ; caractère = rdx + '0'
-            ; empiler le caractère sur la stack
-        ; ensuite dépiler les caractères dans userResponse dans l'ordre
+            ; rax = rax / 10     ; via div (automatic)
+            ; character = rdx + '0'
+            ; push the character on the stack
+        ; then pop the characters in userResponse in order
 
         ; Print the result
         mov rax, 1
