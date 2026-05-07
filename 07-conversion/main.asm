@@ -97,11 +97,11 @@ _start:
         jmp convert_to_integer ; loop again
 
     end_convert_to_integer:
-        ; Multiply by 2 (just to prove that the conversion worked and we are working with a number)
-        shl rax, 1 ; We could have used 'imul rax, rax, 2' instead, but this is an interesting way to do it.
-                    ; It shifts the bits to the left by 1 position so it multiplies by 2. It's faster than imul.
-                    ; Note that it works here because we are working with positive and integer numbers. It would not work with negative numbers.
-
+    ; Multiply by 2 (just to prove that the conversion worked and we are working with a number)
+    shl rax, 1 ; We could have used 'imul rax, rax, 2' instead, but this is an interesting way to do it.
+                ; It shifts the bits to the left by 1 position so it multiplies by 2. It's faster than imul.
+                ; Note that it works here because we are working with positive and integer numbers. It would not work with negative numbers.
+    convert_to_string:
         ; Convert the result back to a string so we can print it
         ; TODO : we need to convert to a String for every character in rax
         ; while rax > 0 :
