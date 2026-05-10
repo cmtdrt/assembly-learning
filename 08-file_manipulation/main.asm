@@ -1,5 +1,9 @@
 global _start
 
+section .data
+    buffer resb 10
+
+section .text
 _start:
     ; TODO: 
     ; 1) Ask the user for the filename to write in
@@ -15,6 +19,13 @@ _start:
     mov rdi, buffer     ; where to store the random bytes
     mov rsi, 10         ; how many bytes to generate
     mov rdx, 0          ; flags (0 = no flags)
+    syscall
+
+    ; print the random bytes
+    mov rax, 1
+    mov rdi, 1
+    mov rsi, buffer
+    mov rdx, 10
     syscall
 
     ; exit
