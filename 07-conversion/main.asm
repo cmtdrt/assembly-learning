@@ -102,19 +102,41 @@ _start:
                 ; It shifts the bits to the left by 1 position so it multiplies by 2. It's faster than imul.
                 ; Note that it works here because we are working with positive and integer numbers. It would not work with negative numbers.
     convert_to_string:
-        ; Convert the result back to a string so we can print it
-        ; TODO : we need to convert to a String for every character in rax
-        ; while rax > 0 :
-            ; rdx = rax % 10     ; via div
-            ; rax = rax / 10     ; via div (automatic)
-            ; character = rdx + '0'
-            ; push the character on the stack
-        ; then pop the characters in userResponse in order
+        mov r14, 0 ; index dans userResponse pour écrire les chiffres
+        mov r15, 0 ; nombre de chiffres empilés
 
-        ; Print the result
+        cmp rax, 0
+        jne digit_loop
+        mov byte [userResponse], '0'
+        mov byte [userResponse + 1], 10
+        mov r13, 2
+        jmp print_result
+
+    digit_loop:
+        xor rdx, rdx ; div utilise rdx:rax — rdx doit être 0 ici
+        mov rcx, 10
+        div rcx ; rdx = reste (chiffre), rax = quotient
+        add rdx, '0'
+        push rdx
+        inc r15
+        test rax, rax
+        jnz digit_loop
+
+    pop_digits:
+        pop rbx
+        mov [userResponse + r14], bl
+        inc r14
+        dec r15
+        jnz pop_digits
+
+        mov byte [userResponse + r14], 10 ; newline pour la lisibilité
+        inc r14
+        mov r13, r14 ; longueur de la chaîne à afficher
+
+    print_result:
         mov rax, 1
         mov rdi, 1
-        mov rsi, result_as_string ; FIXME 
+        mov rsi, userResponse
         mov rdx, r13
         syscall
 
